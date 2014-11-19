@@ -22,8 +22,6 @@ To Login a user:
 fb_jQuery.login();
 ```
 
-```
-
 To Logout a user:
 
 ```
