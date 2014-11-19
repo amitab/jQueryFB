@@ -78,7 +78,7 @@ fb_jQuery.init = function (config) {
         
     };
 
-    fb_jQuery.facebookLogin = function () {
+    fb_jQuery.login = function () {
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
                 fb_jQuery.loginSuccessCallback(response);
@@ -93,7 +93,7 @@ fb_jQuery.init = function (config) {
         });
     };
 
-    fb_jQuery.facebookLogout = function (successCallback) {
+    fb_jQuery.logout = function (successCallback) {
         FB.getLoginStatus(function (response) {
             if (response && response.status === 'connected') {
                 FB.logout(function (response) {
