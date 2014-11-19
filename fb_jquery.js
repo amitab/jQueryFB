@@ -4,9 +4,9 @@ fb_jQuery.init = function (config) {
     
     var settings = {
         appId      : config.appId,
-        status     : typeof (config.status) === 'undefined'? true : config.status,
-        xfbml      : typeof (config.xfbml) === 'undefined'? true : config.xfbml,
-        version    : typeof (config.version) === 'undefined'? 'v2.0' : config.version  
+        status     : typeof (config.status) === 'undefined' ? true : config.status,
+        xfbml      : typeof (config.xfbml) === 'undefined' ? true : config.xfbml,
+        version    : typeof (config.version) === 'undefined' ? 'v2.0' : config.version
     };
     
     fb_jQuery.loginSuccessCallback = config.loginSuccessCallback;
