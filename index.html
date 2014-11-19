@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Untitled Document</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script src="js/fb_jquery.js"></script>
+    </head>
+    <body>
+    
+        <div id="status"></div>
+        
+        <script>
+            
+            fb_jQuery.init({
+                appId: 'xxxxxxxxxxxxx',
+                version: 'v2.1',
+                loginSuccessCallback: function() {
+                    $('#status').html('User Connected');
+                },
+                loginFailCallback: function() {
+                    $('#status').html('User not Connected');
+                },
+                scope: 'email'
+            });
+            
+        </script>
+        
+    </body>
+</html>
