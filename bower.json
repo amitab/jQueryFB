@@ -1,0 +1,15 @@
+{
+    "name": "gridly",
+    "version": "1.0.0",
+    "main": [ "jQueryFB.js", "jQueryFB.min.js" ],
+    "ignore": [
+        "README*",
+        "LICENSE*",
+        ".git*",
+        "*bower.json",
+        "*jquery.json",
+        "*.html",
+        "*.map"
+    ],
+    "dependencies": { "jquery": "latest" }
+}
