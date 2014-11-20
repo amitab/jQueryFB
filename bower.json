@@ -1,7 +1,7 @@
 {
-    "name": "jquery-fb",
-    "version": "1.0.0",
-    "main": [ "jQueryFB.js", "jQueryFB.min.js" ],
+    "name": "jQueryFB",
+    "version": "0.0.1",
+    "main": [ "jQueryFB.js" ],
     "ignore": [
         "README*",
         "LICENSE*",
