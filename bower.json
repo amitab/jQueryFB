@@ -1,5 +1,5 @@
 {
-    "name": "gridly",
+    "name": "jquery-fb",
     "version": "1.0.0",
     "main": [ "jQueryFB.js", "jQueryFB.min.js" ],
     "ignore": [
