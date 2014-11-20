@@ -1,64 +1,76 @@
 var $fb = $fb || {};
 
 $fb.init = function (config) {
-    
-    var settings = {
-        appId      : config.appId,
-        status     : typeof (config.status) === 'undefined' ? true : config.status,
-        xfbml      : typeof (config.xfbml) === 'undefined' ? true : config.xfbml,
-        version    : typeof (config.version) === 'undefined' ? 'v2.0' : config.version
-    };
-    
-    var defaultFailCallback = function (response) {
-        console.log('Error: ' + typeof (response) === 'undefined' ? 'No response recieved' : response.error);
-    };
-    
-    var callIfAvailiable = function (response, intendedFunction, defaultFunction) {
-        if (typeof (intendedFunction) === 'undefined') {
-            defaultFunction(response);
-        } else {
-            intendedFunction(response);
-        }
-    };
-    
-    $fb.loginSuccessCallback = config.loginSuccessCallback;
 
-    if (typeof (config.loginFailCallback) === 'undefined') {
-        $fb.loginFailCallback = defaultFailCallback;
-    } else {
-        $fb.loginFailCallback = config.loginFailCallback;
-    }
+    var scope = typeof (config.scope) === 'undefined' ? {} : config.scope,
+        
+        autocheck = typeof (config.autocheck) === 'undefined' ? true : config.autocheck,
+        
+        settings = {
+            appId      : config.appId,
+            status     : getValue(config.status, true),
+            xfbml      : getValue(config.xfbml, true),
+            version    : getValue(config.version, 'v2.0')
+        },
+        
+        defaultFailCallback = function (response) {
+            console.log('Error: ' + getValue(response.error, 'No response recieved'));
+        },
+        
+        defaultLogoutCallback = function () {
+            console.log('User Logged out');
+        },
+        
+        // returns intendedValue if it is defined else it returns defaultValue
+        getValue = function(intendedValue, defaultValue) {
+            return typeof (intendedValue) === 'undefined' ? defaultValue : intendedValue;
+        },
+        
+        // calls intendedFunction if defined else calls defaultFunction
+        callIfAvailiable = function (response, intendedFunction, defaultFunction) {
+            if (typeof (intendedFunction) === 'undefined') {
+                defaultFunction(response);
+            } else {
+                intendedFunction(response);
+            }
+        },
+        
+        loginSuccessCallback = config.loginSuccessCallback,
+        
+        logoutCallback = getValue(config.logoutCallback, defaultLogoutCallback),
+        
+        loginFailCallback = getValue(config.loginFailCallback, defaultFailCallback),
+        
+        statusChangeCallback = function (response, successCallback, failCallback) {
 
-    $fb.scope = config.scope;
-    $fb.autocheck = typeof (config.autocheck) === 'undefined' ? true : config.autocheck;
+            if (response.status === 'connected') {
+                callIfAvailiable(response, successCallback, loginSuccessCallback);
+            } else {
+                callIfAvailiable(response, failCallback, loginFailCallback);
+            }
 
-    var statusChangeCallback = function (response, successCallback, failCallback) {
-
-        if (response.status === 'connected') {
-            callIfAvailiable(response, successCallback, $fb.loginSuccessCallback);
-        } else {
-            callIfAvailiable(response, failCallback, $fb.loginFailCallback);
-        }
-
-    };
+        };
 
     // Asynchronously load the facebook javascript sdk
     $.ajaxSetup({ cache: true });
     $.getScript('//connect.facebook.net/en_UK/all.js', function () {
+        // todo: add before loading SDK event
         FB.init(settings);
-
+        // todo: add after loading SDK event
+        
+        // expose FB
         $fb.FB = FB;
 
         // Login dialouge is popped open if user isn't logged in
         $fb.login = function (successCallback, failCallback) {
             FB.getLoginStatus(function (response) {
                 if (response.status === 'connected') {
-                    callIfAvailiable(response, successCallback, $fb.loginSuccessCallback);
+                    callIfAvailiable(response, successCallback, loginSuccessCallback);
                 } else {
                     FB.login(function (response) {
                         statusChangeCallback(response, successCallback, failCallback);
                     }, {
-                        scope: $fb.scope,
+                        scope: scope,
                         return_scopes: true
                     });
                 }
@@ -70,9 +82,7 @@ $fb.init = function (config) {
             FB.getLoginStatus(function (response) {
                 if (response && response.status === 'connected') {
                     FB.logout(function (response) {
-                        callIfAvailiable(response, callback, function () {
-                            console.log('User logged out');
-                        });
+                        callIfAvailiable(response, callback, logoutCallback);
                     });
                 }
             });
@@ -115,7 +125,7 @@ $fb.init = function (config) {
         };
         
         // Auto check login status after SDK is loaded
-        if ($fb.autocheck) {
+        if (autocheck) {
             FB.getLoginStatus(function (response) {
                 statusChangeCallback(response);
             });

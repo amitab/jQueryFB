@@ -13,13 +13,13 @@
         <script>
             
             $fb.init({
-                appId: 'xxxxxxxxxxxxxxxx',
-                version: 'v2.1',
-                scope: 'email',
-                loginSuccessCallback: function() {
+                appId                   : 'xxxxxxxxxxxxxxxx',
+                version                 : 'v2.1',
+                scope                   : 'email',
+                loginSuccessCallback    : function(response) {
                     $('#status').html('User Connected');
                 },
-                loginFailCallback: function() {
+                loginFailCallback       : function(response) {
                     $('#status').html('User not Connected');
                 }
             });
