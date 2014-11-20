@@ -2,8 +2,8 @@
 
 To initialize: 
 
-```
-fb_jQuery.init({
+```javascript
+$fb.init({
     appId: 'xxxxxxxxxxxxx',
     version: 'v2.1',
     scope: 'email', // the data you need access to
@@ -19,8 +19,8 @@ fb_jQuery.init({
 
 To Login a user:
 
-```
-fb_jQuery.login(
+```javascript
+$fb.login(
     optional_success_handler,
     optional_failure_handler
 );
@@ -28,8 +28,8 @@ fb_jQuery.login(
 
 To Logout a user:
 
-```
-fb_jQuery.logout(
+```javascript
+$fb.logout(
     // optional callback function
     function(response) {
         // logout callback
@@ -39,8 +39,8 @@ fb_jQuery.logout(
 
 To fetch user information:
 
-```
-fb_jQuery.api({
+```javascript
+$fb.api({
         path: '/me',
         method: 'get', // default is get. Can use post, delete
         params: { fields: 'last_name' } // parameters to pass to Graph API call
