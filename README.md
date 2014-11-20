@@ -11,13 +11,16 @@ $fb.init ({
     status                            : true,                   // optional. default is true
     xfbml                             : true,                   // optional. default is true
     loginSuccessCallback              : function(response) {
-                                            // required
+                                            // Optional. 
+                                            // You can pass a login success handler in the $fb.login() method as well
                                         },
     loginFailCallback                 : function(response) {
-                                            // optional
+                                            // Optional
+                                            // You can pass a login fail handler in the $fb.login() method as well
                                         },
     logoutCallback                    : function(response) {
-                                            // optional
+                                            // Optional
+                                            // You can pass a logout handler in the $fb.logout() method as well
                                         }
 });
 ```
@@ -27,10 +30,12 @@ To Login a user:
 ```javascript
 $fb.login (
     function (response) {
-        // Optional. Here you can override the loginSuccessCallback
+        // Optional only if you have set login success handler in $fb.init() method. 
+        // Here you can override the loginSuccessCallback set during $fb.init() method
     },
     function (response) {
-        // Optional. Here you can override the loginFailCallback
+        // Optional
+        // Here you can override the loginSuccessCallback set during $fb.init() method
     }
 );
 ```
@@ -39,7 +44,8 @@ To Logout a user:
 
 ```javascript
 $fb.logout (
-    // optional callback function
+    // Optional callback function
+    // Here you can override the logout callback set durin $fb.init() method
     function (response) {
         // logout callback
     }
