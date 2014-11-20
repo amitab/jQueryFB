@@ -1,5 +1,7 @@
 # jQueryFB
 
+A jQuery plugin that adds Facebook Javascript SDK asynchronously.
+
 To initialize: 
 
 ```javascript
