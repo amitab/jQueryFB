@@ -6,13 +6,13 @@ To initialize:
 fb_jQuery.init({
     appId: 'xxxxxxxxxxxxx',
     version: 'v2.1',
+    scope: 'email', // the data you need access to
     loginSuccessCallback: function() {
         $('#status').html('User Connected');
     },
     loginFailCallback: function() {
         $('#status').html('User not Connected');
-    },
-    scope: 'email' // the data you need access to
+    }
 });
 ```
 

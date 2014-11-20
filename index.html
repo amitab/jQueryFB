@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Untitled Document</title>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-        <script src="fb_jquery.js"></script>
+        <script src="jQueryFB.js"></script>
     </head>
     <body>
     
@@ -12,16 +12,16 @@
         
         <script>
             
-            fb_jQuery.init({
+            $fb.init({
                 appId: 'xxxxxxxxxxxxxxxx',
                 version: 'v2.1',
+                scope: 'email',
                 loginSuccessCallback: function() {
                     $('#status').html('User Connected');
                 },
                 loginFailCallback: function() {
                     $('#status').html('User not Connected');
-                },
-                scope: 'email'
+                }
             });
             
         </script>
