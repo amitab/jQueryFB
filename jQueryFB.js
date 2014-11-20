@@ -1,7 +1,7 @@
 var $fb = $fb || {};
 
 $fb.init = function (config) {
-    
+
     var getValue = function (intendedValue, defaultValue) {
             // returns intendedValue if it is defined else it returns defaultValue
             return typeof (intendedValue) === 'undefined' ? defaultValue : intendedValue;
@@ -14,9 +14,9 @@ $fb.init = function (config) {
             } else {
                 intendedFunction(response);
             }
-        };
-    
-    var scope = typeof (config.scope) === 'undefined' ? {} : config.scope,
+        },
+        
+        scope = typeof (config.scope) === 'undefined' ? {} : config.scope,
         
         autocheck = typeof (config.autocheck) === 'undefined' ? true : config.autocheck,
         
@@ -28,11 +28,11 @@ $fb.init = function (config) {
         },
         
         defaultFailCallback = function (response) {
-            console.log('Error: ' + getValue(response.error, 'No response recieved'));
+            window.console.log('Error: ' + getValue(response.error, 'No response recieved'));
         },
         
         defaultLogoutCallback = function () {
-            console.log('User Logged out');
+            window.console.log('User Logged out');
         },
         
         loginSuccessCallback = config.loginSuccessCallback,
