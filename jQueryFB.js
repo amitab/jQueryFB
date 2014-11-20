@@ -1,7 +1,21 @@
 var $fb = $fb || {};
 
 $fb.init = function (config) {
-
+    
+    var getValue = function (intendedValue, defaultValue) {
+            // returns intendedValue if it is defined else it returns defaultValue
+            return typeof (intendedValue) === 'undefined' ? defaultValue : intendedValue;
+        },
+        
+        // calls intendedFunction if defined else calls defaultFunction
+        callIfAvailiable = function (response, intendedFunction, defaultFunction) {
+            if (typeof (intendedFunction) === 'undefined') {
+                defaultFunction(response);
+            } else {
+                intendedFunction(response);
+            }
+        };
+    
     var scope = typeof (config.scope) === 'undefined' ? {} : config.scope,
         
         autocheck = typeof (config.autocheck) === 'undefined' ? true : config.autocheck,
@@ -19,20 +33,6 @@ $fb.init = function (config) {
         
         defaultLogoutCallback = function () {
             console.log('User Logged out');
-        },
-        
-        // returns intendedValue if it is defined else it returns defaultValue
-        getValue = function(intendedValue, defaultValue) {
-            return typeof (intendedValue) === 'undefined' ? defaultValue : intendedValue;
-        },
-        
-        // calls intendedFunction if defined else calls defaultFunction
-        callIfAvailiable = function (response, intendedFunction, defaultFunction) {
-            if (typeof (intendedFunction) === 'undefined') {
-                defaultFunction(response);
-            } else {
-                intendedFunction(response);
-            }
         },
         
         loginSuccessCallback = config.loginSuccessCallback,

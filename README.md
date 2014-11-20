@@ -3,7 +3,7 @@
 To initialize: 
 
 ```javascript
-$fb.init({
+$fb.init ({
     appId                             : 'xxxxxxxxxxxxx',        // your app id
     version                           : 'v2.1',                 // version of Facebook SDK
     scope                             : 'email',                // the data you need access to
@@ -25,18 +25,22 @@ $fb.init({
 To Login a user:
 
 ```javascript
-$fb.login(
-    optional_success_handler,
-    optional_failure_handler
+$fb.login (
+    function (response) {
+        // Optional. Here you can override the loginSuccessCallback
+    },
+    function (response) {
+        // Optional. Here you can override the loginFailCallback
+    }
 );
 ```
 
 To Logout a user:
 
 ```javascript
-$fb.logout(
+$fb.logout (
     // optional callback function
-    function(response) {
+    function (response) {
         // logout callback
     }
 );
