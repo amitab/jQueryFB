@@ -1,4 +1,4 @@
-# FB jQuery
+# jQueryFB
 
 To initialize: 
 
@@ -7,6 +7,7 @@ fb_jQuery.init({
     appId: 'xxxxxxxxxxxxx',
     version: 'v2.1',
     scope: 'email', // the data you need access to
+    autocheck: true, // autocheck login on init()
     loginSuccessCallback: function() {
         $('#status').html('User Connected');
     },
@@ -19,13 +20,17 @@ fb_jQuery.init({
 To Login a user:
 
 ```
-fb_jQuery.login();
+fb_jQuery.login(
+    optional_success_handler,
+    optional_failure_handler
+);
 ```
 
 To Logout a user:
 
 ```
 fb_jQuery.logout(
+    // optional callback function
     function(response) {
         // logout callback
     }
