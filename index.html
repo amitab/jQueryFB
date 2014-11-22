@@ -18,9 +18,15 @@
                 scope                   : 'email',
                 loginSuccessCallback    : function(response) {
                     $('#status').html('User Connected');
+                    console.log(response)
                 },
                 loginFailCallback       : function(response) {
                     $('#status').html('User not Connected');
+                    console.log(response)
+                },
+                logoutCallback          : function(response) {
+                    $('#status').html('User not Connected');
+                    console.log(response)
                 }
             });
             

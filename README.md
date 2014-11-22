@@ -13,23 +13,23 @@ $(document).fb.init ({
     status                            : true,                   // optional. default is true
     xfbml                             : true,                   // optional. default is true
     preInitCallback                   : function () {
-                                            // Optional. Fires before FB.init() is called
-                                        },
+        // Optional. Fires before FB.init() is called
+    },
     postInitCallback                   : function () {
-                                            // Optional. Fires after FB.init() is called
-                                        },
+        // Optional. Fires after FB.init() is called
+    },
     loginSuccessCallback              : function(response) {
-                                            // Optional. 
-                                            // You can pass a login success handler in the $(document).fb.login() method as well
-                                        },
+        // Optional. MUST provide this here or while using the .login() or .checkLoginStatus() function. 
+        // You can pass a login success handler in the $(document).fb.login() method as well
+    },
     loginFailCallback                 : function(response) {
-                                            // Optional
-                                            // You can pass a login fail handler in the $(document).fb.login() method as well
-                                        },
+        // Optional
+        // You can pass a login fail handler in the $(document).fb.login() method as well
+    },
     logoutCallback                    : function(response) {
-                                            // Optional
-                                            // You can pass a logout handler in the $(document).fb.logout() method as well
-                                        }
+        // Optional
+        // You can pass a logout handler in the $(document).fb.logout() method as well
+    }
 });
 ```
 
