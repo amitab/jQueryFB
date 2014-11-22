@@ -83,7 +83,9 @@
         $.getScript('//connect.facebook.net/en_UK/all.js', function () {
             (function (FB) {
                 
-                callIfAvailiable(options.preInitCallback);
+                callIfAvailiable({
+                    intendedFunction: options.preInitCallback
+                });
                 
                 FB.init({
                     appId      : options.appId,
@@ -92,7 +94,9 @@
                     version    : options.version
                 });
                 
-                callIfAvailiable(options.postInitCallback);
+                callIfAvailiable({
+                    intendedFunction: options.postInitCallback
+                });
 
                 // expose FB
                 $.fn.fb.FB = FB;
